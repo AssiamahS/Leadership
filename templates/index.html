@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor-Mentee App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mentor-Mentee App</h1>
+    <form action="/add_user" method="POST">
+        <select name="user_type" required>
+            <option value="mentors">Mentor</option>
+            <option value="mentees">Mentee</option>
+        </select>
+        <input type="text" name="user_name" placeholder="Name" required>
+        <input type="text" name="user_skills" placeholder="Skills (comma-separated)" required>
+        <button type="submit">Add User</button>
+    </form>
+    <h2>Mentors</h2>
+    <ul>
+        {% for mentor in users.mentors %}
+            <li>{{ mentor.name }} - Skills: {{ mentor.skills | join(', ') }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Mentees</h2>
+    <ul>
+        {% for mentee in users.mentees %}
+            <li>{{ mentee.name }} - Skills: {{ mentee.skills | join(', ') }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
